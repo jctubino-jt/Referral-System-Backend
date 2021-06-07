@@ -19,4 +19,4 @@ Route::get('/', function () {
 
 
 //Email Route
-Route::get('send/email', [App\Http\Controllers\HomeController::class, 'mail'])->name('email');
+//Route::get('send/email', [App\Http\Controllers\HomeController::class, 'mail'])->name('email');
