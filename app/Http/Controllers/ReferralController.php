@@ -26,4 +26,24 @@ class ReferralController extends Controller
         return $referral;
 
     }
+
+    protected function updateReferralStatus(Request $req)
+    {
+        $referral = Referral::where('referred_email',$req->referred_email)->first();
+        $referral->status="User registered";
+        $referral->save();
+
+        return $referral;
+
+    }
+
+    function findReferral(Request $req){
+        $referral = Referral::where('referred_email',$req->email)->first();
+
+        if(!$referral){
+            return ["status" => 401];
+        }
+
+        return ["status" => 200, "referral"=>$referral];
+    }
 }

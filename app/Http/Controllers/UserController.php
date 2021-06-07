@@ -58,16 +58,28 @@ class UserController extends Controller
 
     function updateReferralCount(Request $req)
     {
-        $user = User::where('id',$req->id)->first();
-
-        $currentReferralCount = $user->referral_count;
-        $finalReferralCount = $currentReferralCount + $req->add_referral_count;
-
-        //$user->increment('referral_count');
-        $user->referral_count = $finalReferralCount;
+        $user = User::where('referral_id',$req->referral_id)->first();
+        if(!$user){
+            return ["error" =>401];
+        }
+        
+        $user->increment('referral_count');
         $user->updated_at = Carbon::now();
         $user->save();
         return $user;
 
+        //$currentReferralCount = $user->referral_count;
+        //$finalReferralCount = $currentReferralCount + $req->add_referral_count;
+        //$user->referral_count = $finalReferralCount;
+    }
+
+    function findUser(Request $req){
+        $user = User::where('email',$req->email)->first();
+
+        if(!$user){
+            return ["status" => 401];
+        }
+
+        return ["status" => 200, "user" => $user];
     }
 }

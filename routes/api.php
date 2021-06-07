@@ -23,8 +23,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register',[UserController::class,'register']);
 Route::post('login',[UserController::class,'login']);
 Route::put('user/referral_count',[UserController::class,'updateReferralCount']);
-Route::post('referral',[ReferralController::class,'create']);
+Route::post('user/find',[UserController::class,'findUser']);
 
+Route::post('referral',[ReferralController::class,'create']);
+Route::put('referral',[ReferralController::class,'updateReferralStatus']);
+Route::post('referral/find',[ReferralController::class,'findReferral']);
 
 //Email Route
 Route::post('send/email', [MailController::class, 'mail'])->name('email');
