@@ -1,6 +1,6 @@
 # Frontend of the Referral System made using Laravel
 
-Kindly migrate all the tables and execute command 'php artisan serve' to start the server.
+Kindly migrate all the tables using 'php artisan migrate' and execute command 'php artisan serve' to start the server.
 
 # The challenge/task
 
